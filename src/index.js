@@ -1,4 +1,4 @@
-import _ from 'loadash'; //=> npm install --save loadash
+import _ from 'lodash'; //=> npm install --save loadash
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
@@ -33,12 +33,12 @@ class App extends Component {
   }
 
   render(){
-    const videoSearch = _.deboune((term)=> {this.videoSearch(term)}, 300);
-    // pass the inner function to deboune and return new function only be called every 300
+    const videoSearch = _.debounce((term)=> {this.videoSearch(term)}, 300);
+    // pass the inner function to debounce and return new function only be called every 300
+    //  <SearchBar onSearchTermChange={(term)=>this.videoSearch(term)} />
     return (
       <div>
          <SearchBar onSearchTermChange={videoSearch} />
-        //  <SearchBar onSearchTermChange={(term)=>this.videoSearch(term)} />
          <VideoDetail video={this.state.selectedVideo} />
          <VideoList     //denfine a function => just update app state (take video update selectedVideo)
            onVideoSelect={selectedVideo => this.setState({selectedVideo}) }   // this is a function
